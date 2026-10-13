@@ -21,8 +21,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet" />
 
 <script>
-  // '동작 줄이기' 사용자가 아니면 등장 효과 준비 (스크립트 실패 시 아래에서 해제)
-  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('anim');
+  // 커버 등장 효과 준비 (스크립트 실패 시 아래에서 해제)
+  document.documentElement.classList.add('anim');
 </script>
 
 <style>
@@ -149,7 +149,8 @@
   .toast{position:fixed;left:50%;bottom:calc(40px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);background:rgba(40,40,30,.92);color:#fff;font-size:13px;padding:10px 18px;border-radius:20px;opacity:0;transition:.3s;z-index:60;pointer-events:none;white-space:nowrap}
   .toast.on{opacity:1;transform:translateX(-50%)}
 
-  @media (prefers-reduced-motion:reduce){.fade{opacity:1;transform:none;transition:none}*{animation:none!important}}
+  /* '동작 줄이기' 사용자: 움직임 없이 은은한 페이드인만 */
+  @media (prefers-reduced-motion:reduce){.fade{transform:none;transition:opacity 1.2s ease}*{animation:none!important}}
 </style>
 </head>
 <body>
@@ -368,8 +369,11 @@ const PARALLAX = {
 
   /* 1. 커버: 등장 효과 + 스크롤 패럴랙스 */
   const layers = [...document.querySelectorAll('.layer')];
-  if (reduce || !window.gsap) {
+  if (!window.gsap) {
     document.documentElement.classList.remove('anim');
+  } else if (reduce) {
+    // '동작 줄이기': 패럴랙스 없이 커버만 은은하게 나타남
+    gsap.to(layers, { opacity: 1, duration: 1.2, stagger: 0.1, ease: 'power1.out' });
   } else {
     gsap.registerPlugin(ScrollTrigger);
     const imgs = layers.map(l => l.querySelector('img'));
