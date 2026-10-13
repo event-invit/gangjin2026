@@ -24,17 +24,28 @@ function doPost(e) {
     let sh = ss.getSheetByName(SHEET_NAME);
     if (!sh) {
       sh = ss.insertSheet(SHEET_NAME);
-      sh.appendRow(['접수일시', '참석여부', '성함', '소속', '연락처', '인원', '남기신 말씀', '개인정보 동의']);
+      sh.appendRow(['번호', '접수일시', '참석여부', '성함', '소속', '연락처', '인원', '남기신 말씀', '개인정보 동의']);
       sh.setFrozenRows(1);
       sh.getRange('1:1').setFontWeight('bold').setBackground('#eef4df');
+    }
+    // 예전 형식(번호 열 없음) 시트면 맨 앞에 '번호' 열을 넣고 기존 회신에 번호를 매김 — 한 번만 실행됨
+    if (sh.getRange(1, 1).getValue() !== '번호') {
+      sh.insertColumnBefore(1);
+      sh.getRange(1, 1).setValue('번호').setFontWeight('bold').setBackground('#eef4df');
+      const n = sh.getLastRow() - 1;
+      if (n > 0) sh.getRange(2, 1, n, 1).setValues(Array.from({ length: n }, (_, i) => [i + 1]));
     }
     const p = e.parameter;
     if (p.agree !== '동의') {
       return ContentService.createTextOutput(JSON.stringify({ ok: false, error: 'consent required' }))
         .setMimeType(ContentService.MimeType.JSON);
     }
+    // 일련번호: 마지막 줄 번호 + 1 (중간 줄을 지워도 번호가 겹치지 않음)
+    const last = sh.getLastRow();
+    const no = last > 1 ? (Number(sh.getRange(last, 1).getValue()) || last - 1) + 1 : 1;
     const clean = v => String(v || '').replace(/^[=+\-@]/, "'$&").slice(0, 500); // 수식 주입 방지
     sh.appendRow([
+      no,
       new Date(),
       clean(p.attend),
       clean(p.name),
@@ -51,4 +62,4 @@ function doPost(e) {
   }
 }
 
-/** 시트 맨 아래에 참석 인원 합계를 보고 싶다면: =SUMIF(B:B,"참석",F:F) */
+/** 시트 맨 아래에 참석 인원 합계를 보고 싶다면: =SUMIF(참석회신!C:C,"참석",참석회신!G:G)  (다른 탭에 입력) */
