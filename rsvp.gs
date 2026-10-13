@@ -41,8 +41,9 @@ function doPost(e) {
         .setMimeType(ContentService.MimeType.JSON);
     }
     // 일련번호: 마지막 줄 번호 + 1 (중간 줄을 지워도 번호가 겹치지 않음)
-    const last = sh.getLastRow();
-    const no = last > 1 ? (Number(sh.getRange(last, 1).getValue()) || last - 1) + 1 : 1;
+    sh.getRange('A:A').setNumberFormat('0');   // 번호 열이 날짜 형식으로 보이지 않게
+    const last = sh.getLastRow(), prev = last > 1 ? sh.getRange(last, 1).getValue() : 0;
+    const no = (Number.isInteger(prev) && prev >= 0 ? prev : last - 1) + 1;
     const clean = v => String(v || '').replace(/^[=+\-@]/, "'$&").slice(0, 500); // 수식 주입 방지
     sh.appendRow([
       no,
