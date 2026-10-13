@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>2026. 강진 공생한마당</title>
+<meta name="description" content="2026. 10. 29.(목) 09:40~15:30 · 강진만 갈대축제 행사장 일원" />
+
+<!-- ▼ 카톡·문자 링크 미리보기 — 배포 후 아래 두 주소의 https://event-invit.github.io/gangjin2026 부분을 실제 주소로 바꿔주세요 (예: https://아이디.github.io/저장소/) -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="2026. 강진 공생한마당" />
+<meta property="og:description" content="2026. 10. 29.(목) 09:40~15:30 · 강진만 갈대축제 행사장 일원" />
+<meta property="og:image" content="https://event-invit.github.io/gangjin2026/images/og.jpg" />
+<meta property="og:image:width" content="800" />
+<meta property="og:image:height" content="400" />
+<meta property="og:url" content="https://event-invit.github.io/gangjin2026/" />
+
+<link rel="preload" as="image" href="images/cover-2.webp" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet" />
+
+<script>
+  // '동작 줄이기' 사용자가 아니면 등장 효과 준비 (스크립트 실패 시 아래에서 해제)
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('anim');
+</script>
+
+<style>
+  :root{
+    --ink:#2b2f25; --sub:#6f7466; --line:#e3e2d6;
+    --accent:#5d8a26; --accent-soft:#eef4df;
+    --cover:#a2c158; --cream:#f5efdf; --soft:#f4f7ec;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{background:#e8eadf;color:var(--ink);font-family:'Noto Sans KR',sans-serif;font-weight:300;line-height:1.75;-webkit-font-smoothing:antialiased;word-break:keep-all}
+  img{display:block;max-width:100%;height:auto}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:480px;margin:0 auto;background:#fff;min-height:100vh;overflow:hidden;box-shadow:0 0 40px rgba(0,0,0,.08)}
+  section{padding:72px 28px;text-align:center;background:#fff}
+  .cream{background:var(--cream)} .soft{background:var(--soft)}
+  .eyebrow{font-size:11px;letter-spacing:.35em;color:var(--accent);margin-bottom:10px;text-transform:uppercase;font-weight:500}
+  h2{font-family:'Gowun Batang',serif;font-size:22px;font-weight:700;margin-bottom:28px;letter-spacing:-.01em}
+
+  /* 스크롤 시 나타나는 효과 (한 번 나타나면 유지) */
+  .fade{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease}
+  .fade.on{opacity:1;transform:none}
+
+  /* 1. 커버: 5개 레이어를 겹침 (cover-1 맨 위 → cover-5 맨 아래) */
+  .cover{padding:0;height:100vh;height:100svh;position:relative;overflow:hidden;background:var(--cover);container-type:size}
+  .layer{position:absolute;inset:0}
+  /* 그림(9:16)보다 홀쭉한 화면: 가로를 꽉 채우고 아래 맞춤 → 위쪽 빈 곳은 하늘색(배경색)과 이어짐, 좌우 잘림 없음 */
+  .layer img{width:100%;height:100%;max-width:none;object-fit:contain;object-position:center bottom;will-change:transform}
+  /* 그림보다 넓적한 화면: 가운데 기준으로 꽉 채움 */
+  @container (min-aspect-ratio: 9/16){ .layer img{object-fit:cover;object-position:center} }
+  .anim .layer{opacity:0}
+
+  /* 2. 타이틀 */
+  .hero{padding:64px 28px 72px}
+  .hero img{width:62%;margin:0 auto 32px}
+  .hero .date{font-family:'Gowun Batang',serif;font-size:19px;font-weight:700}
+  .hero .place{margin-top:4px;font-size:14.5px;color:var(--sub)}
+
+  /* 3. 모시는 말씀 */
+  .greeting p{font-family:'Gowun Batang',serif;font-size:15px;line-height:2.1;white-space:pre-line}
+
+  /* 4~6. 이미지 섹션 */
+  .imgs{padding:64px 0}
+  .imgs img{margin:0 auto}
+  .imgs img+img{margin-top:20px}
+  .zoomable{cursor:zoom-in}
+  .poster{padding:48px 0}
+
+  /* 7. 캘린더 */
+  .when .big{font-family:'Gowun Batang',serif;font-size:20px;margin-bottom:4px}
+  .when .small{font-size:13px;color:var(--sub);margin-bottom:28px}
+  .cal{max-width:300px;margin:0 auto;border-top:1px solid #e2d9c2;border-bottom:1px solid #e2d9c2;padding:18px 0}
+  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);row-gap:8px;font-size:13px}
+  .cal-grid .dow{font-size:11px;color:var(--sub);padding-bottom:6px}
+  .cal-grid .sun{color:#c0574a}
+  .cal-grid span{height:34px;display:flex;align-items:center;justify-content:center}
+  .cal-grid .day-on{background:var(--accent);color:#fff;border-radius:50%;width:34px;margin:0 auto;font-weight:500}
+  .dday{margin-top:28px;display:flex;justify-content:center;gap:10px}
+  .dday div{background:#fff;border-radius:10px;width:58px;padding:10px 0}
+  .dday b{display:block;font-family:'Gowun Batang',serif;font-size:22px;font-weight:700}
+  .dday small{font-size:10px;color:var(--sub);letter-spacing:.1em}
+  .dday-msg{margin-top:16px;font-size:14px}
+  .dday-msg em{font-style:normal;color:var(--accent);font-weight:500}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:44px;padding:0 20px;border:1px solid var(--line);border-radius:22px;background:#fff;font-size:13.5px;font-weight:400}
+  .btn:active{transform:scale(.97)}
+  .btn:disabled{opacity:.45}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+
+  /* 8. 오시는 길 */
+  .map{width:100%;height:240px;border:0;border-radius:12px;background:var(--line);margin-bottom:18px}
+  .venue{font-family:'Gowun Batang',serif;font-size:18px;margin-bottom:4px}
+  .addr{font-size:13.5px;color:var(--sub)}
+  .copy-addr{font-size:12px;color:var(--accent);text-decoration:underline;margin-top:4px}
+  .nav-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:22px}
+  .nav-btns a{height:46px;border:1px solid var(--line);border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px}
+  .nav-btns i{width:16px;height:16px;border-radius:4px;display:inline-block}
+
+  /* 9. 참석 회신 */
+  .rsvp p{font-size:14px;color:var(--sub);margin-bottom:24px}
+  .sheet{position:fixed;inset:0;z-index:40;display:none;background:rgba(30,30,20,.45);align-items:flex-end;justify-content:center}
+  .sheet.open{display:flex}
+  .sheet-body{background:#fff;width:100%;max-width:480px;border-radius:20px 20px 0 0;padding:28px 24px calc(24px + env(safe-area-inset-bottom));text-align:left;animation:up .3s ease;max-height:92vh;overflow:auto}
+  @keyframes up{from{transform:translateY(100%)}}
+  .sheet h3{font-family:'Gowun Batang',serif;font-size:19px;text-align:center;margin-bottom:22px}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:12.5px;color:var(--sub);margin-bottom:6px}
+  .field input,.field textarea{width:100%;font:inherit;font-size:16px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+  .field textarea{min-height:76px;resize:none}
+  .seg{display:flex;gap:8px}
+  .seg label{flex:1;margin:0}
+  .seg input{display:none}
+  .seg span{display:block;text-align:center;padding:12px 0;border:1px solid var(--line);border-radius:10px;font-size:14px;color:var(--ink);background:#fff}
+  .seg input:checked+span{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:500}
+  .stepper{display:flex;align-items:center;border:1px solid var(--line);border-radius:10px;background:#fff;width:150px}
+  .stepper button{width:44px;height:46px;font-size:20px;color:var(--accent)}
+  .stepper output{flex:1;text-align:center;font-size:16px}
+  .consent{background:var(--soft);border-radius:10px;padding:14px;font-size:12.5px;color:var(--sub);line-height:1.6}
+  .consent label{display:flex;gap:8px;align-items:center;margin-top:10px;color:var(--ink);font-size:13.5px;font-weight:400}
+  .consent input{width:20px;height:20px;accent-color:var(--accent);flex:none}
+  .sheet .actions{display:flex;gap:8px;margin-top:22px}
+  .sheet .actions .btn{flex:1}
+
+  /* 공유 */
+  .share{padding:56px 28px}
+  footer{padding:0 28px 56px;text-align:center;font-size:11px;color:var(--sub);letter-spacing:.1em}
+
+  /* 확대 보기 (두 손가락으로 확대 가능) */
+  .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:50;display:none;align-items:center;justify-content:center}
+  .lightbox.open{display:flex}
+  .lightbox img{max-width:100%;max-height:86vh;object-fit:contain}
+  .lb-close{position:absolute;top:calc(14px + env(safe-area-inset-top));right:16px;color:#fff;font-size:30px;width:44px;height:44px}
+  .lb-count{position:absolute;bottom:calc(20px + env(safe-area-inset-bottom));color:#fff;font-size:13px;letter-spacing:.2em;opacity:.8}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:34px;width:48px;height:64px;opacity:.7}
+  .lb-prev{left:4px}.lb-next{right:4px}
+
+  /* 배경음악 버튼 */
+  .bgm{position:fixed;top:calc(14px + env(safe-area-inset-top));right:max(14px, calc(50vw - 240px + 14px));z-index:30;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.85);backdrop-filter:blur(6px);box-shadow:0 2px 10px rgba(0,0,0,.12);display:none;align-items:center;justify-content:center}
+  .bgm.show{display:flex}
+  .bgm.playing svg{animation:spin 4s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  .toast{position:fixed;left:50%;bottom:calc(40px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);background:rgba(40,40,30,.92);color:#fff;font-size:13px;padding:10px 18px;border-radius:20px;opacity:0;transition:.3s;z-index:60;pointer-events:none;white-space:nowrap}
+  .toast.on{opacity:1;transform:translateX(-50%)}
+
+  @media (prefers-reduced-motion:reduce){.fade{opacity:1;transform:none;transition:none}*{animation:none!important}}
+</style>
+</head>
+<body>
+
+<script>
+/* ==========================================================
+   ✏️ 여기만 고치면 초대장 내용이 바뀝니다
+   ========================================================== */
+const CONFIG = {
+  title: "2026. 강진 공생한마당",                   // 약칭 (탭 제목·공유 제목)
+  date: "2026-10-29",
+  startTime: "09:40",
+  endTime: "15:30",
+  place: "강진만 갈대축제 행사장 일원",              // 행사 장소 (표시용)
+
+  // 오시는 길: 지도·길찾기는 장소명(또는 좌표)으로 연결
+  mapName: "강진 생태공원",
+  address: "전남광주통합특별시 강진군 강진읍 생태공원길 47",
+  lat: null, lng: null,                              // ← 좌표 확인 후 입력 (예: lat: 34.62, lng: 126.77)
+
+  // 참석 회신: 구글 Apps Script 웹앱 주소 (rsvp.gs 안내 참고). 비워두면 시험 모드
+  rsvpUrl: "",
+  rsvpDeadline: "",                                  // 예: "10월 24일(금)" — 비우면 표시 안 함
+
+  bgm: "bgm.mp3",                                    // 파일이 없으면 버튼이 자동으로 숨겨집니다
+  kakaoKey: "",                                      // 카카오 JavaScript 키 (없으면 휴대폰 기본 공유창)
+};
+
+/* 커버 패럴랙스: 커버가 화면 밖으로 스크롤될 때까지 각 레이어가 움직이는 거리(px). +는 아래, -는 위, 0은 고정 */
+const PARALLAX = {
+  "cover-1": 0,     // 타이틀 — 고정
+  "cover-2": 180,   // 크게
+  "cover-3": 60,    // 작게
+  "cover-4": 0,     // 타이틀 — 고정
+  "cover-5": 60,    // 작게
+};
+</script>
+
+<div class="wrap">
+
+  <!-- 1. 커버 (아래 레이어가 먼저, 위 레이어가 나중) -->
+  <section class="cover" aria-label="2026 강진 공생한마당 대표 이미지">
+    <div class="layer"><img data-layer="cover-5" src="images/cover-5.webp" width="1080" height="1920" alt="" /></div>
+    <div class="layer"><img data-layer="cover-4" src="images/cover-4.webp" width="1080" height="1920" alt="" /></div>
+    <div class="layer"><img data-layer="cover-3" src="images/cover-3.webp" width="1080" height="1920" alt="" /></div>
+    <div class="layer"><img data-layer="cover-2" src="images/cover-2.webp" width="1080" height="1920" alt="" fetchpriority="high" /></div>
+    <div class="layer"><img data-layer="cover-1" src="images/cover-1.webp" width="1080" height="1920" alt="" fetchpriority="high" /></div>
+  </section>
+
+  <!-- 2. 타이틀 · 일시 · 장소 -->
+  <section class="hero fade">
+    <img src="images/title.webp" width="613" height="535" alt="모두가 GREEN 강진, 다함께 HAPPY 공생, 2026 강진 공생한마당" />
+    <div class="date">2026. 10. 29.(목) 09:40~15:30</div>
+    <div class="place">강진만 갈대축제 행사장 일원</div>
+  </section>
+
+  <!-- 3. 모시는 말씀 (source/모시는글.md 그대로) -->
+  <section class="greeting soft fade">
+    <div class="eyebrow">Invitation</div>
+    <h2>모시는 말씀</h2>
+    <p>들녘을 물들이는 가을 햇살 속에
+함께 걸어온 교육의 길을 돌아봅니다.
+
+올해도 강진교육은
+지역과 자연, 그리고 사람의 온기로
+공생의 의미를 새롭게 써 내려가고 있습니다.
+
+‘모두가 GREEN 강진, 다함께 HAPPY 공생’의 주제로
+교육과 지역이 서로 기대어 성장하는
+소통과 나눔의 자리를 마련하였습니다.
+
+2026. 강진 공생 한마당에 초대하오니,
+공생의 길 위에 피어나는 강진교육의 이야기에
+따뜻한 마음으로 함께해 주시기 바랍니다.
+
+2026. 10.
+
+전남광주통합특별시강진교육지원청 교육장
+윤 영 섭</p>
+  </section>
+
+  <!-- 4. 프로그램 안내 -->
+  <section class="imgs">
+    <img class="fade" src="images/program-0.webp" width="964" height="138" style="width:89.3%" loading="lazy" alt="프로그램 안내" />
+    <img class="fade zoomable" src="images/program-1.webp" width="957" height="964" style="width:88.6%" loading="lazy" alt="프로그램 안내 1부" />
+    <img class="fade zoomable" src="images/program-2.webp" width="953" height="992" style="width:88.2%" loading="lazy" alt="프로그램 안내 2부" />
+  </section>
+
+  <!-- 5. 이미지 섹션 -->
+  <section class="imgs cream">
+    <img class="fade" src="images/info-0.webp" width="964" height="138" style="width:89.3%" loading="lazy" alt="" />
+    <img class="fade zoomable" src="images/info-1.webp" width="927" height="398" style="width:85.8%" loading="lazy" alt="" />
+    <img class="fade zoomable" src="images/info-2.webp" width="927" height="403" style="width:85.8%" loading="lazy" alt="" />
+    <img class="fade zoomable" src="images/info-3.webp" width="929" height="387" style="width:86%" loading="lazy" alt="" />
+    <img class="fade zoomable" src="images/info-4.webp" width="931" height="336" style="width:86.2%" loading="lazy" alt="" />
+  </section>
+
+  <!-- 6. 이미지 섹션 -->
+  <section class="imgs poster">
+    <img class="fade zoomable" src="images/poster.webp" width="1080" height="1920" loading="lazy" alt="" />
+  </section>
+
+  <!-- 7. 캘린더 -->
+  <section class="when cream fade">
+    <div class="eyebrow">Date</div>
+    <div class="big" id="whenBig"></div>
+    <div class="small" id="whenSmall"></div>
+    <div class="cal"><div class="cal-grid" id="cal"></div></div>
+    <div class="dday" id="dday"></div>
+    <div class="dday-msg" id="ddayMsg"></div>
+    <div class="btn-row">
+      <button class="btn" id="addCal">📅 내 캘린더에 저장</button>
+    </div>
+  </section>
+
+  <!-- 8. 오시는 길 -->
+  <section class="location fade">
+    <div class="eyebrow">Location</div>
+    <h2>오시는 길</h2>
+    <iframe class="map" id="map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="지도"></iframe>
+    <div class="venue" id="venue"></div>
+    <div class="addr" id="addr"></div>
+    <button class="copy-addr" id="copyAddr">주소 복사</button>
+    <div class="nav-btns">
+      <a id="navNaver" target="_blank" rel="noopener"><i style="background:#03c75a"></i>네이버지도</a>
+      <a id="navKakao" target="_blank" rel="noopener"><i style="background:#fee500"></i>카카오맵</a>
+      <a id="navTmap" href="#"><i style="background:linear-gradient(135deg,#e7322e,#3f6bf5)"></i>티맵</a>
+    </div>
+  </section>
+
+  <!-- 9. 참석 여부 전달 -->
+  <section class="rsvp soft fade">
+    <div class="eyebrow">R.S.V.P.</div>
+    <h2>참석 여부 전달</h2>
+    <p id="rsvpText"></p>
+    <button class="btn primary" id="openRsvp">참석 여부 전달하기</button>
+  </section>
+
+  <!-- 공유 -->
+  <section class="share">
+    <div class="btn-row" style="margin-top:0">
+      <button class="btn primary" id="shareKakao">카카오톡 공유</button>
+      <button class="btn" id="shareSms">문자 공유</button>
+      <button class="btn" id="copyLink">링크 복사</button>
+    </div>
+  </section>
+
+  <footer id="footer"></footer>
+</div>
+
+<!-- 배경음악 -->
+<button class="bgm" id="bgmBtn" aria-label="배경음악 켜기/끄기">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5d8a26" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/><path id="bgmSlash" d="M4 4l16 16"/></svg>
+</button>
+<audio id="bgm" loop preload="metadata"></audio>
+
+<!-- 이미지 확대 -->
+<div class="lightbox" id="lb">
+  <button class="lb-close" id="lbClose" aria-label="닫기">×</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="이전">‹</button>
+  <img id="lbImg" alt="" />
+  <button class="lb-nav lb-next" id="lbNext" aria-label="다음">›</button>
+  <div class="lb-count" id="lbCount"></div>
+</div>
+
+<!-- 참석 회신 폼 -->
+<div class="sheet" id="sheet">
+  <form class="sheet-body" id="rsvpForm">
+    <h3>참석 여부 전달</h3>
+    <div class="field">
+      <label>참석 여부</label>
+      <div class="seg">
+        <label><input type="radio" name="attend" value="참석" checked><span>참석할게요</span></label>
+        <label><input type="radio" name="attend" value="불참"><span>어려워요</span></label>
+      </div>
+    </div>
+    <div class="field"><label for="fName">성함 *</label><input id="fName" name="name" required autocomplete="name" /></div>
+    <div class="field"><label for="fOrg">소속</label><input id="fOrg" name="org" /></div>
+    <div class="field"><label for="fTel">연락처</label><input id="fTel" name="tel" type="tel" inputmode="tel" autocomplete="tel" /></div>
+    <div class="field" id="countField">
+      <label>본인 포함 참석 인원</label>
+      <div class="stepper"><button type="button" id="minus">−</button><output id="count">1</output><button type="button" id="plus">+</button></div>
+    </div>
+    <div class="field"><label for="fMsg">남기실 말씀</label><textarea id="fMsg" name="message"></textarea></div>
+    <div class="consent">
+      개인정보(성함·연락처)는 행사 참석 확인 목적으로만 사용하며 행사 종료 후 파기합니다.
+      <label><input type="checkbox" id="fAgree" name="agree" value="동의" required>위 내용에 동의합니다</label>
+    </div>
+    <div class="actions">
+      <button type="button" class="btn" id="closeRsvp">닫기</button>
+      <button type="submit" class="btn primary" id="submitRsvp" disabled>보내기</button>
+    </div>
+  </form>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(() => {
+  const C = CONFIG, $ = id => document.getElementById(id);
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const [Y, M, D] = C.date.split('-').map(Number);
+  const event = new Date(`${C.date}T${C.startTime}:00+09:00`);
+  const DOW = ['일','월','화','수','목','금','토'];
+  const dow = DOW[new Date(Y, M-1, D).getDay()];
+  const when = `${Y}. ${M}. ${D}.(${dow}) ${C.startTime}~${C.endTime}`;
+
+  const toast = msg => { const t = $('toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove('on'), 1800); };
+  const copy = async (text, msg) => {
+    try { await navigator.clipboard.writeText(text); }
+    catch { const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); }
+    toast(msg);
+  };
+
+  /* 1. 커버: 등장 효과 + 스크롤 패럴랙스 */
+  const layers = [...document.querySelectorAll('.layer')];
+  if (reduce || !window.gsap) {
+    document.documentElement.classList.remove('anim');
+  } else {
+    gsap.registerPlugin(ScrollTrigger);
+    const imgs = layers.map(l => l.querySelector('img'));
+    const ready = Promise.race([Promise.all(imgs.map(i => i.decode().catch(() => {}))), new Promise(r => setTimeout(r, 1500))]);
+    ready.then(() => gsap.fromTo(layers, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1.2, stagger: 0.15, ease: 'power2.out' }));
+    imgs.forEach(img => {
+      const amount = PARALLAX[img.dataset.layer];
+      if (amount) gsap.to(img, { y: amount, ease: 'none', scrollTrigger: { trigger: '.cover', start: 'top top', end: 'bottom top', scrub: true } });
+    });
+  }
+
+  /* 7. 캘린더 */
+  document.title = C.title;
+  $('whenBig').textContent = `${Y}년 ${M}월 ${D}일 ${dow}요일`;
+  $('whenSmall').textContent = `${C.startTime}~${C.endTime} · ${C.place}`;
+  const cal = $('cal');
+  DOW.forEach((d,i) => cal.insertAdjacentHTML('beforeend', `<span class="dow ${i===0?'sun':''}">${d}</span>`));
+  const first = new Date(Y, M-1, 1).getDay(), last = new Date(Y, M, 0).getDate();
+  for (let i = 0; i < first; i++) cal.insertAdjacentHTML('beforeend', '<span></span>');
+  for (let d = 1; d <= last; d++) {
+    const sun = (first + d - 1) % 7 === 0;
+    cal.insertAdjacentHTML('beforeend', `<span class="${d===D?'day-on':''} ${sun&&d!==D?'sun':''}">${d}</span>`);
+  }
+  function tick(){
+    const diff = event - new Date();
+    if (diff <= 0) { $('dday').innerHTML = ''; $('ddayMsg').innerHTML = '행사가 <em>진행되었습니다</em>. 함께해 주셔서 감사합니다.'; return; }
+    const s = Math.floor(diff/1000), parts = [[Math.floor(s/86400),'DAYS'],[Math.floor(s%86400/3600),'HOUR'],[Math.floor(s%3600/60),'MIN'],[s%60,'SEC']];
+    $('dday').innerHTML = parts.map(([v,l]) => `<div><b>${v}</b><small>${l}</small></div>`).join('');
+    $('ddayMsg').innerHTML = `행사가 <em>${Math.ceil(diff/86400000)}일</em> 남았습니다`;
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* 캘린더 저장 (.ics, 하루 전 알림) */
+  $('addCal').onclick = () => {
+    const f = (d, t) => d.replace(/-/g,'') + 'T' + t.replace(':','') + '00';
+    const ics = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//invitation//KO','BEGIN:VEVENT',
+      `UID:${Date.now()}@invitation`,`DTSTART;TZID=Asia/Seoul:${f(C.date,C.startTime)}`,`DTEND;TZID=Asia/Seoul:${f(C.date,C.endTime)}`,
+      `SUMMARY:${C.title}`,`LOCATION:${C.place} (${C.mapName})`,`DESCRIPTION:${location.href}`,
+      'BEGIN:VALARM','TRIGGER:-P1D','ACTION:DISPLAY',`DESCRIPTION:${C.title}`,'END:VALARM','END:VEVENT','END:VCALENDAR'].join('\r\n');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([ics], {type:'text/calendar'}));
+    a.download = 'gangjin-2026.ics'; a.click();
+  };
+
+  /* 이미지 확대 보기 (탭하면 열림, 두 손가락 확대 가능, 한 손가락 스와이프로 넘김) */
+  const G = [...document.querySelectorAll('.zoomable')]; let gi = 0;
+  const showLb = i => { gi = (i + G.length) % G.length; $('lbImg').src = G[gi].src; $('lbImg').alt = G[gi].alt; $('lbCount').textContent = `${gi+1} / ${G.length}`; };
+  G.forEach((img, i) => img.onclick = () => { showLb(i); $('lb').classList.add('open'); document.body.style.overflow='hidden'; });
+  const closeLb = () => { $('lb').classList.remove('open'); document.body.style.overflow=''; };
+  $('lbClose').onclick = closeLb; $('lbPrev').onclick = () => showLb(gi-1); $('lbNext').onclick = () => showLb(gi+1);
+  $('lb').onclick = e => { if (e.target.id === 'lb') closeLb(); };
+  let sx = 0, multi = false;
+  $('lb').addEventListener('touchstart', e => { multi = e.touches.length > 1; sx = e.touches[0].clientX; }, {passive:true});
+  $('lb').addEventListener('touchend', e => {
+    const zoomed = window.visualViewport && visualViewport.scale > 1.01;
+    if (multi || zoomed || e.touches.length) return;
+    const dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 50) showLb(gi + (dx < 0 ? 1 : -1));
+  });
+
+  /* 8. 오시는 길: 지도·길찾기는 장소명(좌표가 있으면 좌표)으로 */
+  const q = encodeURIComponent(C.mapName), hasXY = C.lat != null && C.lng != null;
+  $('map').src = `https://maps.google.com/maps?q=${hasXY ? `${C.lat},${C.lng}` : q}&z=15&output=embed`;
+  $('venue').textContent = C.mapName; $('addr').textContent = C.address;
+  $('copyAddr').onclick = () => copy(C.address, '주소가 복사되었습니다');
+  $('navNaver').href = `https://map.naver.com/p/search/${q}`;
+  $('navKakao').href = hasXY ? `https://map.kakao.com/link/to/${q},${C.lat},${C.lng}` : `https://map.kakao.com/link/search/${q}`;
+  $('navTmap').onclick = e => {
+    e.preventDefault();
+    location.href = hasXY ? `tmap://route?goalname=${q}&goalx=${C.lng}&goaly=${C.lat}` : `tmap://search?name=${q}`;
+    setTimeout(() => { if (!document.hidden) toast('티맵 앱이 설치되어 있어야 합니다'); }, 1500);
+  };
+
+  /* 9. 참석 회신 */
+  $('rsvpText').innerHTML = `원활한 행사 준비를 위해<br>${C.rsvpDeadline ? `<b style="color:var(--ink);font-weight:500">${C.rsvpDeadline}</b>까지 ` : ''}참석 여부를 알려주세요.`;
+  let count = 1;
+  $('minus').onclick = () => $('count').value = count = Math.max(1, count-1);
+  $('plus').onclick = () => $('count').value = count = Math.min(20, count+1);
+  document.querySelectorAll('input[name=attend]').forEach(r => r.onchange = () => $('countField').style.display = r.value === '불참' && r.checked ? 'none' : '');
+  $('fAgree').onchange = e => $('submitRsvp').disabled = !e.target.checked;
+  const openSheet = () => { $('sheet').classList.add('open'); document.body.style.overflow='hidden'; };
+  const closeSheet = () => { $('sheet').classList.remove('open'); document.body.style.overflow=''; };
+  $('openRsvp').onclick = openSheet; $('closeRsvp').onclick = closeSheet;
+  $('sheet').onclick = e => { if (e.target.id === 'sheet') closeSheet(); };
+  $('rsvpForm').onsubmit = async e => {
+    e.preventDefault();
+    if (!$('fAgree').checked) return toast('개인정보 이용에 동의해 주세요');
+    const fd = new FormData(e.target);
+    fd.set('count', fd.get('attend') === '참석' ? count : 0);
+    const btn = $('submitRsvp'); btn.disabled = true; btn.textContent = '보내는 중…';
+    try {
+      if (C.rsvpUrl) await fetch(C.rsvpUrl, { method:'POST', mode:'no-cors', body:new URLSearchParams(fd) });
+      else await new Promise(r => setTimeout(r, 600));   // 시험 모드
+      closeSheet(); e.target.reset(); $('count').value = count = 1; $('countField').style.display='';
+      toast(C.rsvpUrl ? '전달되었습니다. 감사합니다!' : '[시험 모드] 주소 연결 후 실제로 저장됩니다');
+    } catch { toast('전송에 실패했습니다. 잠시 후 다시 시도해 주세요'); }
+    btn.textContent = '보내기'; btn.disabled = !$('fAgree').checked;
+  };
+
+  /* 공유 */
+  const shareText = `${C.title}\n${when} · ${C.place}`;
+  $('copyLink').onclick = () => copy(location.href, '링크가 복사되었습니다');
+  $('shareSms').onclick = () => { location.href = `sms:?&body=${encodeURIComponent(shareText + '\n' + location.href)}`; };
+  let kakaoReady = false;
+  if (C.kakaoKey) {
+    const s = document.createElement('script');
+    s.src = 'https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js';
+    s.onload = () => { Kakao.init(C.kakaoKey); kakaoReady = true; };
+    document.head.appendChild(s);
+  }
+  $('shareKakao').onclick = async () => {
+    if (kakaoReady) {
+      const img = new URL('images/og.jpg', location.href).href;
+      return Kakao.Share.sendDefault({ objectType:'feed',
+        content:{ title:C.title, description:`${when} · ${C.place}`, imageUrl:img, link:{ mobileWebUrl:location.href, webUrl:location.href } },
+        buttons:[{ title:'초대장 보기', link:{ mobileWebUrl:location.href, webUrl:location.href } }] });
+    }
+    if (navigator.share) { try { await navigator.share({ title:C.title, text:shareText, url:location.href }); } catch {} return; }
+    copy(location.href, '링크가 복사되었습니다. 카톡에 붙여넣어 주세요');
+  };
+  $('footer').textContent = C.title;
+
+  /* 배경음악: 파일을 읽을 수 있을 때만 버튼 표시, 첫 터치 때 재생 시작 */
+  if (C.bgm) {
+    const audio = $('bgm'), btn = $('bgmBtn'), slash = $('bgmSlash');
+    audio.src = C.bgm; audio.volume = 0.5;
+    audio.addEventListener('loadedmetadata', () => btn.classList.add('show'));
+    audio.addEventListener('error', () => btn.classList.remove('show'));
+    const set = on => { btn.classList.toggle('playing', on); slash.style.display = on ? 'none' : ''; };
+    set(false);
+    let userMuted = false;
+    btn.onclick = e => { e.stopPropagation(); if (audio.paused) { audio.play().then(() => set(true)).catch(()=>{}); userMuted = false; } else { audio.pause(); set(false); userMuted = true; } };
+    const kick = e => { if (e.target.closest && e.target.closest('#bgmBtn')) return; if (!userMuted && audio.paused && btn.classList.contains('show')) audio.play().then(() => set(true)).catch(()=>{}); };
+    ['touchstart','click'].forEach(ev => document.addEventListener(ev, kick, { once:true, passive:true }));
+    document.addEventListener('visibilitychange', () => { if (document.hidden) audio.pause(); else if (btn.classList.contains('playing')) audio.play().catch(()=>{}); });
+  }
+
+  /* 스크롤 등장: 한 번 나타나면 유지, 동시에 들어온 것들은 순서대로 */
+  const io = new IntersectionObserver(es => {
+    es.filter(e => e.isIntersecting).forEach((e, i) => {
+      e.target.style.transitionDelay = `${i * 0.18}s`;
+      e.target.classList.add('on'); io.unobserve(e.target);
+    });
+  }, { threshold: .15 });
+  document.querySelectorAll('.fade').forEach(el => io.observe(el));
+})();
+</script>
+</body>
+</html>
