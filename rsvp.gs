@@ -24,7 +24,7 @@ function doPost(e) {
     let sh = ss.getSheetByName(SHEET_NAME);
     if (!sh) {
       sh = ss.insertSheet(SHEET_NAME);
-      sh.appendRow(['번호', '접수일시', '참석여부', '성함', '소속', '연락처', '인원', '남기신 말씀', '개인정보 동의']);
+      sh.appendRow(['번호', '접수일시', '참석여부', '성함', '소속', '직위/직책', '연락처', '인원', '남기신 말씀', '개인정보 동의']);
       sh.setFrozenRows(1);
       sh.getRange('1:1').setFontWeight('bold').setBackground('#eef4df');
     }
@@ -34,6 +34,11 @@ function doPost(e) {
       sh.getRange(1, 1).setValue('번호').setFontWeight('bold').setBackground('#eef4df');
       const n = sh.getLastRow() - 1;
       if (n > 0) sh.getRange(2, 1, n, 1).setValues(Array.from({ length: n }, (_, i) => [i + 1]));
+    }
+    // 예전 형식(직위/직책 열 없음) 시트면 '소속'(E열) 다음에 열을 넣음 — 한 번만 실행됨
+    if (sh.getRange(1, 6).getValue() !== '직위/직책') {
+      sh.insertColumnAfter(5);
+      sh.getRange(1, 6).setValue('직위/직책').setFontWeight('bold').setBackground('#eef4df');
     }
     const p = e.parameter;
     if (p.agree !== '동의') {
@@ -51,6 +56,7 @@ function doPost(e) {
       clean(p.attend),
       clean(p.name),
       clean(p.org),
+      clean(p.position),
       clean(p.tel),
       Number(p.count) || 0,
       clean(p.message),
@@ -63,4 +69,4 @@ function doPost(e) {
   }
 }
 
-/** 시트 맨 아래에 참석 인원 합계를 보고 싶다면: =SUMIF(참석회신!C:C,"참석",참석회신!G:G)  (다른 탭에 입력) */
+/** 시트 맨 아래에 참석 인원 합계를 보고 싶다면: =SUMIF(참석회신!C:C,"참석",참석회신!H:H)  (다른 탭에 입력) */

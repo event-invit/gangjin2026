@@ -62,7 +62,7 @@
   .hero .place{margin-top:4px;font-size:14.5px;color:var(--sub)}
 
   /* 3. 모시는 말씀 */
-  .greeting p{font-family:'Gowun Batang',serif;font-size:15px;line-height:2.1;white-space:pre-line}
+  .greeting{padding:0;background:#f5f7ec}   /* 이미지 바탕색과 같게 */
 
   /* 4~6. 이미지 섹션 */
   .imgs{padding:64px 0}
@@ -94,11 +94,11 @@
   .btn-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:24px}
 
   /* 8. 오시는 길 */
-  .map{width:100%;height:240px;border:0;border-radius:12px;background:var(--line);margin-bottom:18px}
+  .map{width:calc(100% + 40px);max-width:none;margin:0 -20px 18px}   /* 약도 이미지 자체 여백만큼 넓힘 */
   .venue{font-family:'Gowun Batang',serif;font-size:18px;margin-bottom:4px}
   .addr{font-size:13.5px;color:var(--sub)}
   .copy-addr{font-size:12px;color:var(--accent);text-decoration:underline;margin-top:4px}
-  .nav-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:22px}
+  .nav-btns{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:22px}
   .nav-btns a{height:46px;border:1px solid var(--line);border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px}
   .nav-btns i{width:16px;height:16px;border-radius:4px;display:inline-block}
 
@@ -169,7 +169,7 @@ const CONFIG = {
   // 오시는 길: 지도·길찾기는 장소명(또는 좌표)으로 연결
   mapName: "강진 생태공원",
   address: "전남광주통합특별시 강진군 강진읍 생태공원길 47",
-  lat: null, lng: null,                              // ← 좌표 확인 후 입력 (예: lat: 34.62, lng: 126.77)
+  lat: null, lng: null,                              // 좌표(선택): 넣으면 카카오맵이 바로 길안내 (예: lat: 34.62, lng: 126.77)
 
   // 참석 회신: 구글 Apps Script 웹앱 주소 (rsvp.gs 안내 참고). 비워두면 시험 모드
   rsvpUrl: "https://script.google.com/macros/s/AKfycby8lFM584TtSrh-oopv8mgUazVpFCef0TZDP-K8jEbAep3GfQ7gT2FgJGnp9vZOlPDJ/exec",
@@ -207,29 +207,9 @@ const PARALLAX = {
     <div class="place">강진만 갈대축제 행사장 일원</div>
   </section>
 
-  <!-- 3. 모시는 말씀 (source/모시는글.md 그대로) -->
-  <section class="greeting soft fade">
-    <div class="eyebrow">Invitation</div>
-    <h2>모시는 말씀</h2>
-    <p>들녘을 물들이는 가을 햇살 속에
-함께 걸어온 교육의 길을 돌아봅니다.
-
-올해도 강진교육은
-지역과 자연, 그리고 사람의 온기로
-공생의 의미를 새롭게 써 내려가고 있습니다.
-
-‘모두가 GREEN 강진, 다함께 HAPPY 공생’의 주제로
-교육과 지역이 서로 기대어 성장하는
-소통과 나눔의 자리를 마련하였습니다.
-
-2026. 강진 공생 한마당에 초대하오니,
-공생의 길 위에 피어나는 강진교육의 이야기에
-따뜻한 마음으로 함께해 주시기 바랍니다.
-
-2026. 10.
-
-전남광주통합특별시강진교육지원청 교육장
-윤 영 섭</p>
+  <!-- 3. 모시는 말씀 (서체 지정으로 이미지 사용: source/00-invit.png) -->
+  <section class="greeting fade">
+    <img src="images/greeting.webp" width="1080" height="1700" loading="lazy" alt="모시는 말씀. 들녘을 물들이는 가을 햇살 속에 함께 걸어온 교육의 길을 돌아봅니다. 올해도 강진교육은 지역과 자연, 그리고 사람의 온기로 공생의 의미를 새롭게 써 내려가고 있습니다. ‘모두가 GREEN 강진, 다함께 HAPPY 공생’의 주제로 교육과 지역이 서로 기대어 성장하는 소통과 나눔의 자리를 마련하였습니다. 2026. 강진 공생 한마당에 초대하오니, 공생의 길 위에 피어나는 강진교육의 이야기에 따뜻한 마음으로 함께해 주시기 바랍니다. 2026. 10. 전남광주통합특별시강진교육지원청 교육장 윤 영 섭" />
   </section>
 
   <!-- 4. 프로그램 안내 -->
@@ -270,14 +250,13 @@ const PARALLAX = {
   <section class="location fade">
     <div class="eyebrow">Location</div>
     <h2>오시는 길</h2>
-    <iframe class="map" id="map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="지도"></iframe>
+    <img class="map zoomable" src="images/map.webp" width="1080" height="630" loading="lazy" alt="약도: 강진만생태공원 갈대축제 행사장 (강진역 남쪽, 강진만 옆)" />
     <div class="venue" id="venue"></div>
     <div class="addr" id="addr"></div>
     <button class="copy-addr" id="copyAddr">주소 복사</button>
     <div class="nav-btns">
       <a id="navNaver" target="_blank" rel="noopener"><i style="background:#03c75a"></i>네이버지도</a>
       <a id="navKakao" target="_blank" rel="noopener"><i style="background:#fee500"></i>카카오맵</a>
-      <a id="navTmap" href="#"><i style="background:linear-gradient(135deg,#e7322e,#3f6bf5)"></i>티맵</a>
     </div>
   </section>
 
@@ -329,6 +308,7 @@ const PARALLAX = {
     </div>
     <div class="field"><label for="fName">성함 *</label><input id="fName" name="name" required autocomplete="name" /></div>
     <div class="field"><label for="fOrg">소속</label><input id="fOrg" name="org" /></div>
+    <div class="field"><label for="fPos">직위/직책</label><input id="fPos" name="position" autocomplete="organization-title" /></div>
     <div class="field"><label for="fTel">연락처</label><input id="fTel" name="tel" type="tel" inputmode="tel" autocomplete="tel" /></div>
     <div class="field" id="countField">
       <label>본인 포함 참석 인원</label>
@@ -433,18 +413,12 @@ const PARALLAX = {
     const dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 50) showLb(gi + (dx < 0 ? 1 : -1));
   });
 
-  /* 8. 오시는 길: 지도·길찾기는 장소명(좌표가 있으면 좌표)으로 */
+  /* 8. 오시는 길: 길찾기는 장소명(좌표가 있으면 카카오맵은 좌표)으로 */
   const q = encodeURIComponent(C.mapName), hasXY = C.lat != null && C.lng != null;
-  $('map').src = `https://maps.google.com/maps?q=${hasXY ? `${C.lat},${C.lng}` : q}&z=15&output=embed`;
   $('venue').textContent = C.mapName; $('addr').textContent = C.address;
   $('copyAddr').onclick = () => copy(C.address, '주소가 복사되었습니다');
   $('navNaver').href = `https://map.naver.com/p/search/${q}`;
   $('navKakao').href = hasXY ? `https://map.kakao.com/link/to/${q},${C.lat},${C.lng}` : `https://map.kakao.com/link/search/${q}`;
-  $('navTmap').onclick = e => {
-    e.preventDefault();
-    location.href = hasXY ? `tmap://route?goalname=${q}&goalx=${C.lng}&goaly=${C.lat}` : `tmap://search?name=${q}`;
-    setTimeout(() => { if (!document.hidden) toast('티맵 앱이 설치되어 있어야 합니다'); }, 1500);
-  };
 
   /* 9. 참석 회신 */
   $('rsvpText').innerHTML = `원활한 행사 준비를 위해<br>${C.rsvpDeadline ? `<b style="color:var(--ink);font-weight:500">${C.rsvpDeadline}</b>까지 ` : ''}참석 여부를 알려주세요.`;
